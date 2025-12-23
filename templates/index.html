@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{% endblock %}
+
+{% block body %}
+<body class="w-[100vw] h-[100vh] flex">
+    <header>
+        <nav class="flex justify-between w-[100%] h-[80px] fixed bg-[#EEE6E7] pl-10 pr-10 z-1 shadow-md">
+            <div class="flex justify-center items-center gap-1 cursor-pointer">
+                <img src="../static/images/book (2).png" alt="book-icon" class="w-[42px] h-[40px]">
+                <p class="text-2xl font-medium font-serif text-[#30231D]">Book<span class="text-[#7E252C]">Track</span></p>
+            </div>
+            <div class="flex gap-5 justify-center items-center">
+                <a href="/login" class="hover:underline">Login</a>
+                <a href="/register" class="hover:underline">Register</a>
+            </div>
+        </nav>
+    </header>
+    <main class="main-index w-[100%] overflow-hidden flex items-center align-middle pl-6">
+        <div class="flex flex-col gap-5 max-w-xl px-12">
+            <h1 class="text-4xl font-serif font-semibold mb-4 text-[#30231D]">Track your <span class="text-[#7E252C]">reading</span> journey!</h1>
+            <p class="text-lg text-black/80 mb-8">Organize your books, rate your reads and build
+                a reading history that actually matters.</p>
+            <div class="flex gap-4">
+                <a href="/login" class="px-6 py-3 bg-[#7E252C] rounded-md font-medium hover:bg-[#661f25] transition text-white">Login</a>
+                <a href="/register" class="px-6 py-3 border-2 text-[#7E252C] border-[#7E252C] rounded-md font-medium hover:bg-[#7E252C] hover:text-white transition">Get Started</a>
+            </div>
+        </div>
+    </main>
+</body>
+{% endblock %}

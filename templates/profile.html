@@ -1,0 +1,155 @@
+{% extends "layout.html" %}
+
+{% block title %}
+| Profile
+{% endblock %}
+
+{% block body %}
+<body class="w-full h-full flex overflow-x-hidden bg-[#F9F4F0]">
+    <header>
+        <nav class="grid grid-cols-3 items-center w-full h-[80px] bg-[#EEE6E7] px-10 shadow-md fixed top-0 left-0">
+            <div class="flex justify-start items-center gap-1 cursor-pointer">
+                <img src="../static/images/book (2).png" alt="book-icon" class="w-[42px] h-[40px]">
+                <p class="text-2xl font-medium font-serif text-[#30231D]">Book<span class="text-[#7E252C]">Track</span></p>
+            </div>
+            <div class="flex justify-center items-center">
+                <div class="relative">
+                    <form action="/add" method="GET">
+                        <img src="../static/images/magnifying-glass.png" alt="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-[18px] opacity-50">
+                        <input type="text" name="search" placeholder="Search books..." class="pl-10 pr-4 py-2 w-[280px] rounded-md border border-black/30 bg-[#EEE6E7] focus:outline-none focus:ring-2 focus:ring-[#7E252C]">
+                    </form>
+                </div>
+            </div>
+            <div class="flex gap-5 justify-end items-center">
+                <a href="/logout" class="hover:underline">Logout</a>
+            </div>
+        </nav>
+    </header>
+    <main class="w-full px-10
+    {% if books %}
+    pt-24 pb-20 flex flex-col gap-12
+    {% else %}
+    h-[100vh] pt-[80px] flex items-center justify-center flex-col
+    {% endif %}">
+        <div class="flex flex-col items-center justify-center {% if books %} mt-[80px] {% endif %}">
+            <h1 class="text-4xl font-semibold text-[#513635] mb-4">Welcome back, {{ username }}</h1>
+            <p class="text-2xl mb-6 text-black/70">Track and organize your reading journey.</p>
+            <a href="/add" class="bg-[#A8484E] text-white px-8 py-3 font-semibold cursor-pointer rounded-md hover:bg-[#c95159] transition shadow-sm">
+                {% if books %}
+                    Add a book
+                {% else %}
+                    Add your first book
+                {% endif %}
+            </a>
+             <hr class="w-[900px] border-t-2 border-black/30 mt-13 mb-8">
+        </div>
+       
+        {% if books %}
+        <div class="flex gap-12 flex-col">
+
+        {% if finished_books %}
+        <div class="flex items-center justify-center flex-col">
+        <h2 class="text-2xl mb-5 font-semibold text-[#513635]">Finished Books</h2>
+
+        <div class="grid grid-cols-3 gap-4">
+        {% for book in finished_books %}
+            <div class="flex gap-4 bg-white rounded-md shadow-sm hover:shadow-md p-4 transition-all">
+
+                <div class="flex-shrink-0">
+                    {% if book.thumbnail %}
+                    <img src="{{ book.thumbnail }}" alt="{{ book.title }}" class="w-20 h-28  object-cover rounded">
+                    {% else %}
+                    <img src="../static/images/no-cover.png" class="w-32" alt="No cover">
+                    {% endif %}
+                </div>
+
+                <div class="flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-semibold text-lg ">{{ book.title }}</h3>
+                        <p class="text-sm text-black/70">{{ book.authors }}</p>
+                    </div>
+
+                    <span class="text-xs font-medium text-green-700 bg-green-100 w-fit px-2 py-1 rounded mt-2">
+                        Finished
+                    </span>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+        </div>
+        {% endif %}
+
+        {% if reading_books %}
+        <div class="flex items-center justify-center flex-col">
+        <h2 class="text-2xl mb-5 font-semibold text-[#513635]">Reading Books</h2>
+
+        <div class="grid grid-cols-3 gap-4">
+        {% for book in reading_books %}
+            <div class="flex gap-4 bg-white rounded-md shadow-sm hover:shadow-md p-4 transition-all">
+
+                <div class="flex-shrink-0">
+                    {% if book.thumbnail %}
+                    <img src="{{ book.thumbnail }}" alt="{{ book.title }}" class="w-20 h-28  object-cover rounded">
+                    {% else %}
+                    <img src="../static/images/no-cover.png" class="w-32" alt="No cover">
+                    {% endif %}
+                </div>
+
+                <div class="flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-semibold text-lg ">{{ book.title }}</h3>
+                        <p class="text-sm text-black/70">{{ book.authors }}</p>
+                    </div>
+
+                    <span class="text-xs font-medium text-[#C58B2E] bg-[#C58B2E]/10 w-fit px-2 py-1 rounded mt-2">
+                        Reading
+                    </span>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+        </div>
+        {% endif %}
+        
+        {% if to_read_books %}
+        <div class="flex items-center justify-center flex-col">
+        <h2 class="text-2xl mb-5 font-semibold text-[#513635]">To Read Books</h2>
+
+        <div class="grid grid-cols-3 gap-4">
+        {% for book in to_read_books %}
+        <div class="flex gap-4 bg-white rounded-md shadow-sm hover:shadow-md p-4 transition-all">
+
+                <div class="flex-shrink-0">
+                    {% if book.thumbnail %}
+                    <img src="{{ book.thumbnail }}" alt="{{ book.title }}" class="w-20 h-28  object-cover rounded">
+                    {% else %}
+                    <img src="../static/images/no-cover.png" class="w-32" alt="No cover">
+                    {% endif %}
+                </div>
+
+                <div class="flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-semibold text-lg ">{{ book.title }}</h3>
+                        <p class="text-sm text-black/70">{{ book.authors }}</p>
+                    </div>
+
+                    <span class="text-xs font-medium text-[#7E252C] bg-[#7E252C]/10 w-fit px-2 py-1 rounded mt-2">
+                        To read
+                    </span>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+        </div>
+        {% endif %}
+        </div>
+        {% else %}
+            <div class="flex flex-col items-center justify-center">
+                <img src="../static/images/empty-state-books.png" alt="state-books" class="w-[420px]">
+                <h2 class="text-2xl font-semibold text-[#513635] mb-4">You haven't added any books yet</h2>
+                <p class="text-xl text-black/70">Start building your reading history by adding your first book</p>
+            </div>
+    {% endif %}
+    </main>
+</body>
+{% endblock %}
