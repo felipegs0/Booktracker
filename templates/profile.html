@@ -32,7 +32,13 @@
     h-[100vh] pt-[80px] flex items-center justify-center flex-col
     {% endif %}">
         <div class="flex flex-col items-center justify-center {% if books %} mt-[80px] {% endif %}">
-            <h1 class="text-4xl font-semibold text-[#513635] mb-4">Welcome back, {{ username }}</h1>
+            <h1 class="text-4xl font-semibold text-[#513635] mb-4">
+                {% if books %}
+                Welcome back, {{ username }}
+                {% else %}
+                Welcome, {{ username }}
+                {% endif %}
+            </h1>
             <p class="text-2xl mb-6 text-black/70">Track and organize your reading journey.</p>
             <a href="/add" class="bg-[#A8484E] text-white px-8 py-3 font-semibold cursor-pointer rounded-md hover:bg-[#c95159] transition shadow-sm">
                 {% if books %}
