@@ -11,8 +11,13 @@ function openModal(button)
     modal.classList.remove("hidden")
 }
 
-function openModalProfile()
+function openModalProfile(bookId)
 {
+    let updateForm = document.getElementById("updateForm")
+    document.getElementById("modal_google_id").value = bookId;
+
+    updateForm.action = `/books/${bookId}/update`
+
     modal.classList.remove("hidden")
 }
 

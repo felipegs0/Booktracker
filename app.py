@@ -229,5 +229,28 @@ def delete_book(book_id):
 
     return redirect("/profile")
 
+@app.route("/books/<int:book_id>/update", methods=["POST"])
+def update_book(book_id):
+    db = get_db()
+    cursor = db.cursor()
+
+    if "user_id" not in session:
+        return redirect("/login")
+    
+    new_status = request.form.get("status")
+
+    if new_status not in ["finished", "reading", "to_read"]:
+        return redirect("/profile")
+    
+    cursor.execute(
+        "UPDATE books SET status = ? WHERE id = ? AND user_id = ?", (new_status, book_id, session["user_id"])
+    )
+
+    db.commit()
+    db.close()
+
+    return redirect("/profile")
+    
+
 if __name__ == "__main__":
     app.run(debug=True) 
