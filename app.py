@@ -212,5 +212,22 @@ def logout():
     session.clear()
     return redirect("/")
 
+@app.route("/books/<int:book_id>/delete", methods=["POST"])
+def delete_book(book_id):
+    if "user_id" not in session:
+        return redirect("/login")
+    
+    db = get_db()
+    cursor = db.cursor()
+
+    cursor.execute(
+        "DELETE FROM books WHERE id = ? AND user_id = ?", (book_id, session["user_id"])
+    )
+
+    db.commit()
+    db.close()
+
+    return redirect("/profile")
+
 if __name__ == "__main__":
     app.run(debug=True) 

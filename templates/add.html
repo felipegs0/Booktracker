@@ -6,6 +6,18 @@
 
 {% block body %}
 <body class="w-[100vw] h-[100vh] flex bg-[#F9F4F0] overflow-x-hidden">
+    <header>
+        <nav class="flex justify-between items-center w-full h-[80px] bg-[#EEE6E7] px-10 shadow-md fixed top-0 left-0 z-2">
+            <div class="flex justify-start items-center gap-1 cursor-pointer">
+                <img src="../static/images/book (2).png" alt="book-icon" class="w-[42px] h-[40px]">
+                <p class="text-2xl font-medium font-serif text-[#30231D]">Book<span class="text-[#7E252C]">Track</span></p>
+            </div>
+            <div class="flex gap-5 justify-end items-center">
+                <a href="/profile"  class="hover:underline">Profile</a>
+                <a href="/logout" class="hover:underline">Logout</a>
+            </div>
+        </nav>
+    </header>
     <main class="flex items-center w-full min-h-screen flex-col  
     {% if not results %}
     justify-center
@@ -14,7 +26,9 @@
     {% endif %}
     ">
         <div class="flex items-center justify-center mb-5 flex-col">
-            <h1 class="text-3xl font-serif font-semibold text-[#513635] mb-4">Add a book</h1>
+            <h1 class="text-3xl font-serif font-semibold text-[#513635] mb-4 {% if results %}
+            mt-8
+            {% endif %}">Add a book</h1>
             <p class="text-xl mb-6 text-black/70">Search for a book by title</p>
         </div>
 

@@ -11,6 +11,11 @@ function openModal(button)
     modal.classList.remove("hidden")
 }
 
+function openModalProfile()
+{
+    modal.classList.remove("hidden")
+}
+
 function closeModal() 
 {
     modal.classList.add("hidden")
