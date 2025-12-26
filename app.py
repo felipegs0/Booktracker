@@ -193,10 +193,15 @@ def add():
                 for item in data["items"]:
                     volume_info = item.get("volumeInfo", {})
                     imageLinks = volume_info.get("imageLinks", {})
+                    authors_list = volume_info.get("authors")
+                    if authors_list:
+                        authors = ", ".join(authors_list)
+                    else:
+                        authors = "Unknown author"
                     book_data = {
                         "google_id": item.get("id"),
                         "title": volume_info.get("title", "Unknown title"),
-                        "authors": volume_info.get("authors", ["Unknown author"]),
+                        "authors": authors,
                         "description": volume_info.get("description", "Unknown description"),
                         "thumbnail": imageLinks.get("thumbnail"),
                         "ratingsCount": volume_info.get("ratingsCount", 0)
