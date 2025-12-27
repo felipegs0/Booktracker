@@ -13,7 +13,7 @@
                 <p class="text-2xl font-medium font-serif text-[#30231D]">Book<span class="text-[#7E252C]">Track</span></p>
             </div>
             <div class="flex gap-5 justify-end items-center">
-                <a href="/profile"  class="hover:underline">Profile</a>
+                <a href="/profile"  class="hover:underline">{{ t.add_profile }}</a>
                 <a href="/logout" class="hover:underline">Logout</a>
             </div>
         </nav>
@@ -28,18 +28,18 @@
         <div class="flex items-center justify-center mb-5 flex-col">
             <h1 class="text-3xl font-serif font-semibold text-[#513635] mb-4 {% if results %}
             mt-8
-            {% endif %}">Add a book</h1>
-            <p class="text-xl mb-6 text-black/70">Search for a book by title</p>
+            {% endif %}">{{ t.add_title }}</h1>
+            <p class="text-xl mb-6 text-black/70">{{ t.add_subtitle }}</p>
         </div>
 
         <form method="GET" action="/add" class="flex gap-4 items-center justify-center">
             <div class="flex justify-center items-center">
                 <div class="relative">
                     <img src="../static/images/magnifying-glass.png" alt="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-[18px] opacity-50">
-                    <input type="text" name="search" placeholder="Search books..." class="pl-10 pr-4 py-2 w-[280px] rounded-md border border-black/30 bg-[#EEE6E7] focus:outline-none focus:ring-2 focus:ring-[#7E252C]">
+                    <input type="text" name="search" placeholder="{{ t.add_search.placeholder }}" class="pl-10 pr-4 py-2 w-[280px] rounded-md border border-black/30 bg-[#EEE6E7] focus:outline-none focus:ring-2 focus:ring-[#7E252C]">
                 </div>
             </div>
-            <button class="bg-[#7E252C] text-white px-6 h-[42px] rounded-md hover:bg-[#661f25] transition cursor-pointer">Search</button>
+            <button class="bg-[#7E252C] text-white px-6 h-[42px] rounded-md hover:bg-[#661f25] transition cursor-pointer">{{ t.add_search.button }}</button>
         </form>
         {% if results %}
         <div class="mt-10 w-full max-w-3xl animate-fade-in">
@@ -54,7 +54,7 @@
             <div>
                 <h2 class="font-semibold">{{ book.title }}</h2>
                 <p class="font-normal mb-1">{{ book.authors }}</p>
-                <p class="text-sm text-black/60 line-clamp-4">Description: {{ book.description }}</p> 
+                <p class="text-sm text-black/60 line-clamp-4">{{ t.add_description }}: {{ book.description }}</p> 
             </div>
         </div>
         <button class="bg-[#7E252C] text-white px-4 py-2 rounded-md hover:bg-[#661f25] transition ml-6 cursor-pointer"
@@ -64,7 +64,7 @@
         data-thumbnail="{{ book.thumbnail }}"
         data-description="{{ book.description }}"
         onclick="openModal(this)">
-            Add
+            {{ t.add_button }}
         </button>
     </div>
             {% endfor %}

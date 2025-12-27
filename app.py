@@ -2,6 +2,7 @@ from flask import Flask, flash, redirect, render_template, request, session
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 import requests
+from translations import translations
 
 import sqlite3
 
@@ -22,6 +23,23 @@ def get_db():
     conn = sqlite3.connect("booktrack.db")
     conn.row_factory = sqlite3.Row
     return conn
+
+@app.context_processor
+def inject_translations():
+    lang = session.get("lang", "en")
+    return {
+        "t": translations.get(lang, translations["en"])
+    }
+
+@app.route("/set-language", methods=["POST"])
+def set_language():
+    lang = request.form.get("language")
+
+    if lang in ["en", "pt-br"]:
+        session["lang"] = lang
+
+    return redirect(request.referrer or "/")
+
 
 @app.route("/")
 def index():

@@ -16,7 +16,7 @@
                 <div class="relative">
                     <form action="/add" method="GET">
                         <img src="../static/images/magnifying-glass.png" alt="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-[18px] opacity-50">
-                        <input type="text" name="search" placeholder="Search books..." class="pl-10 pr-4 py-2 w-[280px] rounded-md border border-black/30 bg-[#EEE6E7] focus:outline-none focus:ring-2 focus:ring-[#7E252C]">
+                        <input type="text" name="search" placeholder="{{ t.profile_search }}" class="pl-10 pr-4 py-2 w-[280px] rounded-md border border-black/30 bg-[#EEE6E7] focus:outline-none focus:ring-2 focus:ring-[#7E252C]">
                     </form>
                 </div>
             </div>
@@ -34,17 +34,17 @@
         <div class="flex flex-col items-center justify-center {% if books %} mt-[80px] {% endif %}">
             <h1 class="text-4xl font-semibold text-[#513635] mb-4">
                 {% if books %}
-                Welcome back, {{ username }}
+                {{ t.profile_welcome.others }}, {{ username }}
                 {% else %}
-                Welcome, {{ username }}
+                {{ t.profile_welcome.first }}, {{ username }}
                 {% endif %}
             </h1>
-            <p class="text-2xl mb-6 text-black/70">Track and organize your reading journey.</p>
+            <p class="text-2xl mb-6 text-black/70">{{ t.profile_tagline }}</p>
             <a href="/add" class="bg-[#A8484E] text-white px-8 py-3 font-semibold cursor-pointer rounded-md hover:bg-[#c95159] transition shadow-sm">
                 {% if books %}
-                    Add a book
+                    {{ t.profile_button.others }}
                 {% else %}
-                    Add your first book
+                    {{ t.profile_button.first }}
                 {% endif %}
             </a>
              <hr class="w-[900px] border-t-2 border-black/30 mt-13 mb-8">
@@ -55,7 +55,7 @@
 
         {% if finished_books %}
         <div class="flex items-center justify-center flex-col">
-        <h2 class="text-2xl mb-5 font-semibold text-[#513635]">Finished Books</h2>
+        <h2 class="text-2xl mb-5 font-semibold text-[#513635]">{{ t.profile_books.finished_books }}</h2>
 
         <div class="grid grid-cols-3 gap-4">
         {% for book in finished_books %}
@@ -77,17 +77,17 @@
                     </div>
 
                     <span class="text-xs font-medium text-green-700 bg-green-100 w-fit px-2 py-1 rounded mt-2">
-                        Finished
+                        {{ t.profile_finished }}
                     </span>
                 
                 
                 
                 <div class="flex">
-                    <button class="text-xs text-yellow-600 hover:underline px-2 cursor-pointer" onclick="openModalProfile('{{ book.id }}')">Update</button>
+                    <button class="text-xs text-yellow-600 hover:underline px-2 cursor-pointer" onclick="openModalProfile('{{ book.id }}')">{{ t.profile_update }}</button>
 
                     <form action="/books/{{ book.id }}/delete" method="POST" class="flex">
                     <button class="text-xs text-red-600 hover:underline px-2 cursor-pointer">
-                        Remove
+                        {{ t.profile_remove }}
                     </button>
                 </form>
                 </div>
@@ -103,7 +103,7 @@
 
         {% if reading_books %}
         <div class="flex items-center justify-center flex-col">
-        <h2 class="text-2xl mb-5 font-semibold text-[#513635]">Reading Books</h2>
+        <h2 class="text-2xl mb-5 font-semibold text-[#513635]">{{ t.profile_books.reading_books }}</h2>
 
         <div class="grid grid-cols-3 gap-4">
         {% for book in reading_books %}
@@ -124,14 +124,14 @@
                     </div>
 
                     <span class="text-xs font-medium text-[#C58B2E] bg-[#C58B2E]/10 w-fit px-2 py-1 rounded mt-2">
-                        Reading
+                        {{ t.modal_reading }}
                     </span>
                     <div class="flex">
-                    <button class="text-xs text-yellow-600 hover:underline px-2 cursor-pointer" onclick="openModalProfile('{{ book.id }}')">Update</button>
+                    <button class="text-xs text-yellow-600 hover:underline px-2 cursor-pointer" onclick="openModalProfile('{{ book.id }}')">{{ t.profile_update }}</button>
 
                     <form action="/books/{{ book.id }}/delete" method="POST" class="flex">
                     <button class="text-xs text-red-600 hover:underline px-2 cursor-pointer">
-                        Remove
+                        {{ t.profile_remove }}
                     </button>
                 </form>
                 </div>
@@ -144,7 +144,7 @@
         
         {% if to_read_books %}
         <div class="flex items-center justify-center flex-col">
-        <h2 class="text-2xl mb-5 font-semibold text-[#513635]">To Read Books</h2>
+        <h2 class="text-2xl mb-5 font-semibold text-[#513635]">{{ t.profile_books.to_read_books }}</h2>
 
         <div class="grid grid-cols-3 gap-4">
         {% for book in to_read_books %}
@@ -165,15 +165,15 @@
                     </div>
 
                     <span class="text-xs font-medium text-[#7E252C] bg-[#7E252C]/10 w-fit px-2 py-1 rounded mt-2">
-                        To read
+                        {{ t.profile_books.to_read_books }}
                     </span>
 
                     <div class="flex">
-                    <button class="text-xs text-yellow-600 hover:underline px-2 cursor-pointer" onclick="openModalProfile('{{ book.id }}')">Update</button>
+                    <button class="text-xs text-yellow-600 hover:underline px-2 cursor-pointer" onclick="openModalProfile('{{ book.id }}')">{{ t.profile_update }}</button>
 
                     <form action="/books/{{ book.id }}/delete" method="POST" class="flex">
                     <button class="text-xs text-red-600 hover:underline px-2 cursor-pointer">
-                        Remove
+                        {{ t.profile_remove }}
                     </button>
                 </form>
                 </div>
@@ -189,8 +189,8 @@
         {% else %}
             <div class="flex flex-col items-center justify-center">
                 <img src="../static/images/empty-state-books.png" alt="state-books" class="w-[420px]">
-                <h2 class="text-2xl font-semibold text-[#513635] mb-4">You haven't added any books yet</h2>
-                <p class="text-xl text-black/70">Start building your reading history by adding your first book</p>
+                <h2 class="text-2xl font-semibold text-[#513635] mb-4">{{ t.profile_no_books_title }}</h2>
+                <p class="text-xl text-black/70">{{ t.profile_no_books_subtitle }}</p>
             </div>
     {% endif %}
     <div id="modal" class="hidden fixed flex top-0 left-0 items-center inset-0 bg-black/40 justify-center">
@@ -200,18 +200,18 @@
                     <input type="hidden" name="google_id" id="modal_google_id">
 
                     <div>
-                        <button class="w-32 h-32 rounded-xl bg-[#2E7D32] text-white text-xl font-semibold shadow-md hover:bg-[#256528] hover:shadow-lg hover:-translate-y-1 transition-all ease-out cursor-pointer" name="status" value="finished">Read</button>
+                        <button class="w-32 h-32 rounded-xl bg-[#2E7D32] text-white text-xl font-semibold shadow-md hover:bg-[#256528] hover:shadow-lg hover:-translate-y-1 transition-all ease-out cursor-pointer" name="status" value="finished">{{ t.modal_read }}</button>
                     </div>
                     <div>
-                        <button class="w-32 h-32 bg-[#C58B2E] rounded-xl text-white text-xl font-semibold shadow-md hover:bg-[#B07A25] hover:shadow-lg hover:-translate-y-1 transition-all ease-out cursor-pointer" name="status" value="reading">Reading</button>
+                        <button class="w-32 h-32 bg-[#C58B2E] rounded-xl text-white text-xl font-semibold shadow-md hover:bg-[#B07A25] hover:shadow-lg hover:-translate-y-1 transition-all ease-out cursor-pointer" name="status" value="reading">{{ t.modal_reading }}</button>
                     </div>
                     <div>
-                        <button class="w-32 h-32 bg-[#7E252C] rounded-xl text-white text-xl font-semibold shadow-md hover:bg-[#661f25] hover:shadow-lg hover:-translate-y-1 transition-all ease-out cursor-pointer" name="status" value="to_read">Will Read</button>
+                        <button class="w-32 h-32 bg-[#7E252C] rounded-xl text-white text-xl font-semibold shadow-md hover:bg-[#661f25] hover:shadow-lg hover:-translate-y-1 transition-all ease-out cursor-pointer" name="status" value="to_read">{{ t.modal_will_read }}</button>
                     </div>
                 </form>
         
                 <button onclick="closeModal()" class="text-lg text-blue-800 hover:underline cursor-pointer">
-                    Close
+                    {{ t.modal_close }}
                 </button>
             </div>
         </div>

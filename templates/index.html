@@ -13,20 +13,71 @@
             </div>
             <div class="flex gap-5 justify-center items-center">
                 <a href="/login" class="hover:underline">Login</a>
-                <a href="/register" class="hover:underline">Register</a>
+                <a href="/register" class="hover:underline">{{ t.index_register }}</a>
+                <form action="/set-language" method="POST">
+                    <select name="language" onchange="this.form.submit()">
+                        <option value="en" {% if session.get("lang", "en") == "en" %}selected{% endif %}>EN</option>
+                        <option value="pt-br" {% if session.get("lang") == "pt-br" %}selected{% endif %}>PT-BR</option>
+                    </select>
+                </form>
             </div>
+            
         </nav>
     </header>
-    <main class="main-index w-[100%] overflow-hidden flex items-center align-middle pl-6">
-        <div class="flex flex-col gap-5 max-w-xl px-12">
-            <h1 class="text-4xl font-serif font-semibold mb-4 text-[#30231D]">Track your <span class="text-[#7E252C]">reading</span> journey!</h1>
-            <p class="text-lg text-black/80 mb-8">Organize your books, and build
-                a reading history that actually matters.</p>
+    <main class="main-index min-w-full overflow-hidden flex flex-col justify-center pl-6 pt-[80px]">
+        <div class="flex flex-col gap-5 max-w-xl px-12 mt-35">
+            <h1 class="text-4xl font-serif font-semibold mb-4 text-[#30231D]">{{ t.index_title.normal }} <span class="text-[#7E252C]">{{ t.index_title.highlight }}</span> {{ t.index_title.final }}</h1>
+            <p class="text-lg text-black/80 mb-8">{{ t.index_subtitle }}</p>
             <div class="flex gap-4">
                 <a href="/login" class="px-6 py-3 bg-[#7E252C] rounded-md font-medium hover:bg-[#661f25] transition text-white">Login</a>
-                <a href="/register" class="px-6 py-3 border-2 text-[#7E252C] border-[#7E252C] rounded-md font-medium hover:bg-[#7E252C] hover:text-white transition">Get Started</a>
+                <a href="/register" class="px-6 py-3 border-2 text-[#7E252C] border-[#7E252C] rounded-md font-medium hover:bg-[#7E252C] hover:text-white transition">{{ t.index_register_button }}</a>
             </div>
+
         </div>
+
+        <section class="mt-18">
+  <div class="bg-white/10 backdrop-blur-md rounded-3xl p-6 flex gap-4 w-[37.5%]">
+    
+    <div class="p-5 w-52 rounded-2xl bg-white border border-black/15 shadow-sm hover:shadow-md transition">
+            <div class="w-10 h-10 mx-auto mb-3 flex items-center justify-center rounded-full bg-[#7E252C]/10 text-[#7E252C] text-lg">
+                📚
+            </div>
+            <h3 class="font-semibold text-base text-[#30231D]">
+                {{ t.index_card1.title }}
+            </h3>
+            <p class="text-sm text-black/60 mt-1">
+                {{ t.index_card1.subtitle }}
+            </p>
+        </div>
+        
+        
+        <div class="p-5 rounded-2xl bg-white border border-black/15 shadow-sm hover:shadow-md transition">
+            <div class="w-10 h-10 mb-3 mx-auto flex items-center justify-center rounded-full bg-[#7E252C]/10 text-[#7E252C] text-lg">
+                🔍
+            </div>
+            <h3 class="font-semibold text-base text-[#30231D]">
+                {{ t.index_card2.title }}
+            </h3>
+            <p class="text-sm text-black/60 mt-1">
+                 {{ t.index_card2.subtitle }}
+            </p>
+        </div>
+
+        <div class="p-5 w-48 rounded-2xl bg-white border border-black/15 shadow-sm hover:shadow-md transition">
+            <div class="w-10 h-10 mb-3 mx-auto flex items-center justify-center rounded-full bg-[#7E252C]/10 text-[#7E252C] text-lg">
+                🌍
+            </div>
+            <h3 class="font-semibold text-base text-[#30231D]">
+                {{ t.index_card3.title }}
+            </h3>
+            <p class="text-sm text-black/60 mt-1">
+                 {{ t.index_card3.subtitle }}
+            </p>
+        </div>
+
+  </div>
+</section>
+        
     </main>
 </body>
 {% endblock %}
