@@ -64,6 +64,16 @@ BookTracker/
 
 ---
 
+## Demo
+
+A aplicação está disponível online:
+
+🔗 https://booktracker-plmd.onrender.com
+
+Hospedado no Render.
+
+Devido às limitações do Render, o banco de dados é resetado a cada 15 minutos.
+
 ## Autor
 
 **Felipe Gomes** 
