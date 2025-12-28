@@ -82,18 +82,18 @@
                     <input type="hidden" name="description" id="modal_description">
 
                     <div>
-                        <button class="w-32 h-32 rounded-xl bg-[#2E7D32] text-white text-xl font-semibold shadow-md hover:bg-[#256528] hover:shadow-lg hover:-translate-y-1 transition-all ease-out cursor-pointer" name="status" value="finished">Read</button>
+                        <button class="w-32 h-32 rounded-xl bg-[#2E7D32] text-white text-xl font-semibold shadow-md hover:bg-[#256528] hover:shadow-lg hover:-translate-y-1 transition-all ease-out cursor-pointer" name="status" value="finished">{{ t.modal_read }}</button>
                     </div>
                     <div>
-                        <button class="w-32 h-32 bg-[#C58B2E] rounded-xl text-white text-xl font-semibold shadow-md hover:bg-[#B07A25] hover:shadow-lg hover:-translate-y-1 transition-all ease-out cursor-pointer" name="status" value="reading">Reading</button>
+                        <button class="w-32 h-32 bg-[#C58B2E] rounded-xl text-white text-xl font-semibold shadow-md hover:bg-[#B07A25] hover:shadow-lg hover:-translate-y-1 transition-all ease-out cursor-pointer" name="status" value="reading">t.modal_reading</button>
                     </div>
                     <div>
-                        <button class="w-32 h-32 bg-[#7E252C] rounded-xl text-white text-xl font-semibold shadow-md hover:bg-[#661f25] hover:shadow-lg hover:-translate-y-1 transition-all ease-out cursor-pointer" name="status" value="to_read">Will Read</button>
+                        <button class="w-32 h-32 bg-[#7E252C] rounded-xl text-white text-xl font-semibold shadow-md hover:bg-[#661f25] hover:shadow-lg hover:-translate-y-1 transition-all ease-out cursor-pointer" name="status" value="to_read">{{ t.modal_will_read }}</button>
                     </div>
                 </form>
         
                 <button onclick="closeModal()" class="text-lg text-blue-800 hover:underline cursor-pointer">
-                    Close
+                    {{ t.modal_close }}
                 </button>
             </div>
         </div>
