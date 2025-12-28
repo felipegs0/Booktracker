@@ -8,8 +8,14 @@ import sqlite3
 
 import os
 from dotenv import load_dotenv
+from init_db import init_db
 
 load_dotenv()
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DB_PATH = os.path.join(BASE_DIR, "booktrack.db")
+
+init_db()
 
 GOOGLE_BOOKS_API_KEY = os.getenv("GOOGLE_BOOKS_API_KEY")
 
@@ -20,7 +26,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 def get_db():
-    conn = sqlite3.connect("booktrack.db")
+    conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
     return conn
 
@@ -276,4 +282,4 @@ def update_book(book_id):
     
 
 if __name__ == "__main__":
-    app.run(debug=True) 
+    app.run() 

@@ -66,6 +66,6 @@ BookTracker/
 
 ## Autor
 
-**Felipe Gomes**
+**Felipe Gomes** 
+
 Projeto desenvolvido inicialmente para o **CS50** e aprimorado para portfólio pessoal.
-Brasil 🇧🇷
